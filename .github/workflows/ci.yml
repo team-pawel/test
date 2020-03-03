@@ -9,8 +9,9 @@ on:
       - master
 
 jobs:
+
   build:
-    name: Build project
+    name: Build and test project
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +24,18 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - uses: actions/upload-artifact@master
+      with: 
+        name: builded artifacts
+        path: public/
+      
+  publish:
+    name: Publish docker image to github packages
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: builded artifacts
+          path: public
