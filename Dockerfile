@@ -12,4 +12,4 @@ FROM openjdk:8
 WORKDIR /usr/app/
 COPY --from=build /usr/app/build/libs/*.jar /usr/app/app.jar
 EXPOSE 8080
-CMD ["java","-jar",app.jar]
+CMD ["java","-jar","/usr/app/app.jar"]
