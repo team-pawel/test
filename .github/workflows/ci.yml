@@ -24,26 +24,3 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - uses: actions/upload-artifact@master
-      with: 
-        name: builded artifacts
-        path: public/
-      
-  publish:
-    name: Publish docker image to github packages
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Download built artifact
-      uses: actions/download-artifact@master
-      with:
-        name: builded artifacts
-        path: public
-    - name: Build, Tag, Push
-      uses: mattdavis0351/actions/docker-gpr@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        image-name: test
