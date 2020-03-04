@@ -1,9 +1,5 @@
 FROM openjdk:8 AS build
 WORKDIR /usr/app/
-#COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME
-#COPY gradle $APP_HOME/gradle
-#RUN chmod +x gradlew
-#RUN ./gradlew build || return 0 
 COPY . /usr/app/
 RUN chmod +x gradlew
 RUN ./gradlew build
