@@ -1,4 +1,4 @@
-FROM openjdk:8 AS TEMP_BUILD_IMAGE
+FROM openjdk:8 AS build
 ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 #COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME
@@ -13,6 +13,6 @@ FROM openjdk:8
 ENV ARTIFACT_NAME=app.jar
 ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
-COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
+COPY --from=build $APP_HOME/build/libs/*.jar $APP_HOME/ARTIFACT_NAME
 EXPOSE 8080
 CMD ["java","-jar",$ARTIFACT_NAME]
