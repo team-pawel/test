@@ -2,8 +2,6 @@ name: CI - Build and test
 
 on:
   pull_request:
-    types:
-      - completed
     branches: 
       - master
 
