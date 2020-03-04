@@ -1,10 +1,9 @@
 name: CI - Build and test
 
 on:
-  push:
-    branches: 
-      - master
   pull_request:
+    types:
+      - completed
     branches: 
       - master
 
