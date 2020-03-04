@@ -1,0 +1,25 @@
+name: Docker CD
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+      
+  publish:
+    name: Publish docker image to github packages
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Build, Tag, Push
+      uses: mattdavis0351/actions/docker-gpr@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        image-name: test
