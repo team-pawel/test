@@ -12,7 +12,6 @@ jobs:
       
   publish:
     name: Publish docker image to github packages
-    needs: build
     runs-on: ubuntu-latest
     
     steps:
