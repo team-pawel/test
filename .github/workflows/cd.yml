@@ -1,4 +1,4 @@
-name: Docker CD
+name: CD - build image and push to packages
 
 on:
   push:
